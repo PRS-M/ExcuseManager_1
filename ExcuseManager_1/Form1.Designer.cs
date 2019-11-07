@@ -1,6 +1,6 @@
 ﻿namespace ExcuseManager_1
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,12 +34,15 @@
             this.dateLabel = new System.Windows.Forms.Label();
             this.excuseTextBox = new System.Windows.Forms.TextBox();
             this.resultTextBox = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.lastUsedDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.fillDateLabel = new System.Windows.Forms.Label();
+            this.folderButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.openButton = new System.Windows.Forms.Button();
+            this.randomButton = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // excuseLabel
@@ -92,80 +95,92 @@
             this.resultTextBox.Size = new System.Drawing.Size(250, 20);
             this.resultTextBox.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // lastUsedDateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(100, 64);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(250, 20);
-            this.dateTimePicker1.TabIndex = 8;
+            this.lastUsedDateTimePicker.Location = new System.Drawing.Point(100, 64);
+            this.lastUsedDateTimePicker.Name = "lastUsedDateTimePicker";
+            this.lastUsedDateTimePicker.Size = new System.Drawing.Size(250, 20);
+            this.lastUsedDateTimePicker.TabIndex = 8;
             // 
-            // label1
+            // fillDateLabel
             // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(100, 91);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(250, 20);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "FIll date";
+            this.fillDateLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.fillDateLabel.Location = new System.Drawing.Point(100, 91);
+            this.fillDateLabel.Name = "fillDateLabel";
+            this.fillDateLabel.Size = new System.Drawing.Size(250, 20);
+            this.fillDateLabel.TabIndex = 9;
+            this.fillDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button1
+            // folderButton
             // 
-            this.button1.Location = new System.Drawing.Point(12, 121);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.folderButton.Location = new System.Drawing.Point(12, 121);
+            this.folderButton.Name = "folderButton";
+            this.folderButton.Size = new System.Drawing.Size(75, 23);
+            this.folderButton.TabIndex = 10;
+            this.folderButton.Text = "Folder";
+            this.folderButton.UseVisualStyleBackColor = true;
+            this.folderButton.Click += new System.EventHandler(this.folderButton_Click);
             // 
-            // button2
+            // saveButton
             // 
-            this.button2.Location = new System.Drawing.Point(93, 121);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.saveButton.Enabled = false;
+            this.saveButton.Location = new System.Drawing.Point(93, 121);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 11;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // button3
+            // openButton
             // 
-            this.button3.Location = new System.Drawing.Point(174, 121);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.openButton.Enabled = false;
+            this.openButton.Location = new System.Drawing.Point(174, 121);
+            this.openButton.Name = "openButton";
+            this.openButton.Size = new System.Drawing.Size(75, 23);
+            this.openButton.TabIndex = 12;
+            this.openButton.Text = "Open";
+            this.openButton.UseVisualStyleBackColor = true;
+            this.openButton.Click += new System.EventHandler(this.openButton_Click);
             // 
-            // button4
+            // randomButton
             // 
-            this.button4.Location = new System.Drawing.Point(255, 121);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 23);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.randomButton.Enabled = false;
+            this.randomButton.Location = new System.Drawing.Point(255, 121);
+            this.randomButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(95, 23);
+            this.randomButton.TabIndex = 13;
+            this.randomButton.Text = "Random";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
             // 
-            // Form1
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 156);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.randomButton);
+            this.Controls.Add(this.openButton);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.folderButton);
+            this.Controls.Add(this.fillDateLabel);
+            this.Controls.Add(this.lastUsedDateTimePicker);
             this.Controls.Add(this.resultTextBox);
             this.Controls.Add(this.excuseTextBox);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.lastUsedLabel);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.excuseLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Excuse Manager";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,12 +194,15 @@
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.TextBox excuseTextBox;
         private System.Windows.Forms.TextBox resultTextBox;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DateTimePicker lastUsedDateTimePicker;
+        private System.Windows.Forms.Label fillDateLabel;
+        private System.Windows.Forms.Button folderButton;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button openButton;
+        private System.Windows.Forms.Button randomButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }
 
