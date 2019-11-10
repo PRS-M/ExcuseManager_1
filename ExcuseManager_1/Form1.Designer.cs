@@ -87,6 +87,7 @@
             this.excuseTextBox.Name = "excuseTextBox";
             this.excuseTextBox.Size = new System.Drawing.Size(250, 20);
             this.excuseTextBox.TabIndex = 4;
+            this.excuseTextBox.TextChanged += new System.EventHandler(this.excuseTextBox_TextChanged);
             // 
             // resultTextBox
             // 
@@ -94,6 +95,7 @@
             this.resultTextBox.Name = "resultTextBox";
             this.resultTextBox.Size = new System.Drawing.Size(250, 20);
             this.resultTextBox.TabIndex = 5;
+            this.resultTextBox.TextChanged += new System.EventHandler(this.resultTextBox_TextChanged);
             // 
             // lastUsedDateTimePicker
             // 
@@ -101,6 +103,7 @@
             this.lastUsedDateTimePicker.Name = "lastUsedDateTimePicker";
             this.lastUsedDateTimePicker.Size = new System.Drawing.Size(250, 20);
             this.lastUsedDateTimePicker.TabIndex = 8;
+            this.lastUsedDateTimePicker.ValueChanged += new System.EventHandler(this.lastUsedDateTimePicker_ValueChanged);
             // 
             // fillDateLabel
             // 

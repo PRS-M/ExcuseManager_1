@@ -21,7 +21,7 @@ namespace ExcuseManager_1
         public MainForm()
         {
             InitializeComponent();
-            _currentExcuse.lastUsedDateTime = lastUsedDateTimePicker.Value;
+            _currentExcuse.LastUsedDateTime = lastUsedDateTimePicker.Value;
         }
 
         private void UpdateForm(bool changed)
@@ -30,7 +30,7 @@ namespace ExcuseManager_1
             {
                 this.excuseTextBox.Text = _currentExcuse.Description;
                 this.resultTextBox.Text = _currentExcuse.Result;
-                this.lastUsedDateTimePicker.Value = _currentExcuse.lastUsedDateTime;
+                this.lastUsedDateTimePicker.Value = _currentExcuse.LastUsedDateTime;
                 if (!String.IsNullOrEmpty(_currentExcuse.ExcusePath))
                 {
                     this.fillDateLabel.Text = File.GetLastWriteTime(_currentExcuse.ExcusePath).ToString();
@@ -71,7 +71,7 @@ namespace ExcuseManager_1
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(excuseTextBox.Text)||String.IsNullOrEmpty(resultTextBox.Text))
+            if (String.IsNullOrEmpty(excuseTextBox.Text) || String.IsNullOrEmpty(resultTextBox.Text))
             {
                 MessageBox.Show("Please specify an excuse and a result", "Unable to save", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -85,23 +85,51 @@ namespace ExcuseManager_1
             {
                 _currentExcuse.Save(saveFileDialog.FileName);
                 UpdateForm(false);
-                MessageBox.Show("Excuse saved.");
+                MessageBox.Show("Excuse saved");
             }
         }
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            openFileDialog.InitialDirectory = _selectedFolder;
-
             if (CheckChanged())
             {
-
+                openFileDialog.InitialDirectory = _selectedFolder;
+                openFileDialog.Filter = "Text files|*.txt|All files|*.*";
+                openFileDialog.FileName = excuseTextBox.Text + ".txt";
+                DialogResult result = openFileDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _currentExcuse = new Excuse(openFileDialog.FileName);
+                    UpdateForm(false);
+                }
             }
         }
 
         private void randomButton_Click(object sender, EventArgs e)
         {
+            if (CheckChanged())
+            {
+                _currentExcuse = new Excuse(random, _selectedFolder);
+                UpdateForm(false);
+            }
+        }
 
+        private void excuseTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentExcuse.Description = excuseTextBox.Text;
+            UpdateForm(true);
+        }
+
+        private void resultTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentExcuse.Result = resultTextBox.Text;
+            UpdateForm(true);
+        }
+
+        private void lastUsedDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            _currentExcuse.LastUsedDateTime = lastUsedDateTimePicker.Value;
+            UpdateForm(true);
         }
     }
 }
